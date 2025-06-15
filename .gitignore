@@ -1,0 +1,17 @@
+# Archivos de compilación
+*.class
+
+# Carpeta de salida de IntelliJ
+/out/
+
+# Archivos de IntelliJ IDEA
+.idea/
+*.iml
+
+# Archivos temporales del sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de VS Code (opcional)
+.vscode/

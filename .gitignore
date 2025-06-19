@@ -6,7 +6,7 @@
 
 # Archivos de IntelliJ IDEA
 .idea/
-*.iml
+*z
 
 # Archivos temporales del sistema
 *.log

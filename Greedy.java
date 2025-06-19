@@ -10,9 +10,12 @@ public class Greedy {
 	public static void GreedyMethod(int total, List<Maquina> maq) {
 
 		//es void, tiene que devolver lista, si no tiene nada y salio mal lista vacia y sino con los results
-		  List<Maquina> secuencia = new ArrayList<>();
+		System.out.println("Cantidad de de candidatos considerados: " + maq.size());
+
+		List<Maquina> secuencia = new ArrayList<>();
 		  int resto = total;
 		  int candidatosConsiderados = 0;
+		  //Ordenamos las maquinas por cantidad de piezas de mayor a menor.
 		  Collections.sort(maq);
 
 		  while(!maq.isEmpty() && resto > 0) {
@@ -20,20 +23,30 @@ public class Greedy {
 				  if(mejor != null) {
 					  secuencia.add(mejor);
 					  resto = resto - mejor.getPiezas();
-				  } else {
-					//Si no hay un candidato adecuado devolvemos null
-					  System.out.println("No hay una solucion adecuada");
 				  }
-
-
 		  }
+		  if (maq.isEmpty()){
+			//Si no hay un candidato adecuado devolvemos null
+			secuencia.clear();
+			System.out.println("No hay una solucion adecuada");
+
+		}
+
 	        // Mostrar resultados
-	        System.out.println("Cantidad de piezas buscadas: " +total);
-			for(Maquina m : secuencia) {
-	        	System.out.print("["+m.getNombre() + "-" + m.getPiezas() + " piezas" + "]");
-	        }
+
+			if(!secuencia.isEmpty()) {
+				System.out.print("Solucion obtenida (secuencia de maquinas): ");
+				for(Maquina m : secuencia) {
+					System.out.print("["+m.getNombre() + "-" + m.getPiezas() + " piezas" + "]");
+				}
+
+			}
+
 			System.out.println();
-			System.out.println("Cantidad de de candidatos considerados: " + maq.size());
+			System.out.println("Cantidad de piezas producidas: " +total);
+
+
+
 	}
 
 	public static Maquina mejorCandidato(List<Maquina> machine, int objetivo){
@@ -41,25 +54,15 @@ public class Greedy {
 			//si la maquina hace mas piezas de las que necesito no la necesito mas
 			if(machine.get(i).getPiezas() <= objetivo) {
 				return machine.get(i);
+			}else {
+				machine.remove(i);
+				return null;
 			}
 		}
 		return null;
 	}
 
 
-	/*
-	public static void main(String[] args) {
-		Maquina m1 = new Maquina("M1", 7);
-		Maquina m2 = new Maquina("M2", 8);
-		
-		List<Maquina> maquinas = new ArrayList<Maquina>();
-		maquinas.add(m1);
-		maquinas.add(m2);
-		
-		Greedy.GreedyMethod(14, maquinas);
-		
-		
-	}
-	*/
+
 
 }

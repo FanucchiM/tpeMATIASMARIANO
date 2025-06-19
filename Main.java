@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-            String archivo = "config.txt";
+            String archivo = "tpeMATIMARIAN/config.txt";
             int objetivo = 0;
             List<Maquina> maquinas = new ArrayList<>();
 
@@ -29,14 +29,19 @@ public class Main {
 
 
         // Ejecutamos el backtracking
-            System.out.println("Solucion Backtracking");
+            System.out.println("Solucion Backtracking: ");
             Backtracking bt = new Backtracking();
             Backtracking.Resultado resultado = bt.backtrackingOptimo(objetivo, maquinas);
 
             // Imprimimos los resultados
+            System.out.println("Cantidad de piezas producidas: " +objetivo);
             System.out.println("Cantidad de maquinas utilizadas: " + resultado.secuencia.size());
             for (int i = 0; i < resultado.secuencia.size(); i++) {
-                System.out.print("["+resultado.secuencia.get(i).getNombre() + " piezas: " + resultado.secuencia.get(i).getPiezas() +"]" );
+                System.out.print("["+resultado.secuencia.get(i).getNombre() + " - "+ resultado.secuencia.get(i).getPiezas() + " piezas" +"]" );
+            }
+
+            if (resultado.secuencia.isEmpty()) {
+                System.out.println("No se encontro una secuencia para producir la cantidad de piezas pedidas.");
             }
             System.out.println();
 
@@ -44,7 +49,7 @@ public class Main {
 
 
         System.out.println();
-        System.out.println("Solucion Greedy");
+        System.out.println("Solucion Greedy: ");
         Greedy.GreedyMethod(objetivo, maquinas);
 
 

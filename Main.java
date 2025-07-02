@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-            String archivo = "tpeMATIMARIAN/config.txt";
+            String archivo = "config.txt";
             int objetivo = 0;
             List<Maquina> maquinas = new ArrayList<>();
 

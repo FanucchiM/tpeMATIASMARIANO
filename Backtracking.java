@@ -12,6 +12,7 @@ public class Backtracking {
 	}
 	
 	public Resultado backtrackingOptimo(int objetivo, List<Maquina> maq) {
+
 		//El arbol de exploracion empezara vacio, y empezara a recorrer las Maquinas una por una, siempre y cuando la suma para llegar
 		// al objetivo sea menor, si es asi, lo agrego al array de posible solucion y sigo con los futuros candidatos.
 		//Un estado no final y que no solucion seria un array de maquinas, y que el ultimo elemento que se quiere agregar se pasa del objetivo
@@ -23,6 +24,7 @@ public class Backtracking {
 	}
 
 	public static void backtracking(int indice, int objetivo, List<Maquina> maquinas, List<Maquina> actual, int sumaActual, Resultado resultado) {
+
 
 		resultado.llamadas++;
 
@@ -38,11 +40,19 @@ public class Backtracking {
 		    for(int i = indice; i < maquinas.size(); i++) {
 				//si el candidato + la sumActual es menor a la cantidad de piezas objetivo, lo agregamos al array, si no podamos.
 			    if((sumaActual + maquinas.get(i).getPiezas()) <= objetivo) {
-			    	actual.add(maquinas.get(i));
-			    	sumaActual = sumaActual + maquinas.get(i).getPiezas();
-					backtracking(indice, objetivo, maquinas, actual, sumaActual, resultado);
-					actual.remove(actual.size() - 1);
-					sumaActual= sumaActual - maquinas.get(i).getPiezas();
+					if (resultado.secuencia.isEmpty() || actual.size()<resultado.secuencia.size()) {
+						actual.add(maquinas.get(i));
+						sumaActual = sumaActual + maquinas.get(i).getPiezas();
+
+
+						backtracking(i, objetivo, maquinas, actual, sumaActual, resultado);
+						actual.remove(actual.size() - 1);
+						sumaActual= sumaActual - maquinas.get(i).getPiezas();
+
+					}
+
+
+
 			    }
 		    }
 	    }

@@ -1,6 +1,6 @@
 package tpeMATIMARIAN;
 
-public class Maquina implements Comparable<Maquina> {
+public class Maquina  {
 	private String nombre;
 	private int piezas;
 	
@@ -25,9 +25,6 @@ public class Maquina implements Comparable<Maquina> {
 		this.piezas = piezas;
 	}
 
-	@Override
-	public int compareTo(Maquina o) {
-		return o.getPiezas() - this.getPiezas();
- 	}
+
 
 }

@@ -8,24 +8,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-            String archivo = "config.txt";
-            int objetivo = 0;
-            List<Maquina> maquinas = new ArrayList<>();
+        String archivo = "config.txt";
+        LectorConfig.DatosEntrada entrada = LectorConfig.leerArchivo(archivo);
 
-            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-                objetivo = Integer.parseInt(br.readLine().trim());
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    String[] partes = linea.split(",");
-                    String nombre = partes[0].trim();
-                    int piezas = Integer.parseInt(partes[1].trim());
-                    maquinas.add(new Maquina(nombre, piezas));
-                }
-            } catch (IOException e) {
-                System.out.println("Error leyendo archivo: " + e.getMessage());
-                return;
-            }
-
+        int objetivo = entrada.objetivo;
+        List<Maquina> maquinas = entrada.maquinas;
 
 
         // Ejecutamos el backtracking
